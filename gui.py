@@ -15,6 +15,9 @@ class SearchGUI:
         self.root.minsize(800, 500)
         self.root.resizable(True, True)
 
+        # App state
+        self.selected_folder = None
+
         # Create layout frames (structure) with temporary debug colors
         self.top_frame = tk.Frame(self.root, bg="red")
         self.control_frame = tk.Frame(self.root, bg="blue")
@@ -31,7 +34,7 @@ class SearchGUI:
         self.select_button = tk.Button(self.top_frame, text="Select Folder", command=self.choose_folder)
         self.path_label = tk.Label(self.top_frame, text="No folder selected", anchor="w")
 
-        # Place top bar widgets
+        # Place Top Bar Widgets
         self.select_button.pack(side="left", padx=10, pady=10)
         self.path_label.pack(side="left", fill="x", expand=True, padx=10)
 
@@ -39,6 +42,9 @@ class SearchGUI:
         folder = filedialog.askdirectory()
         if folder:
             self.path_label.config(text=folder)
+        # temporary debug
+            print(f"Selected folder: {self.selected_folder}")    
+            self.path_label.pack(side="left", fill="x")
 
 
 if __name__ == "__main__":
